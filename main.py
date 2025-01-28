@@ -10,7 +10,6 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    print(player.position)
 
     while True:
 
