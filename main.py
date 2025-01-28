@@ -9,22 +9,37 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+
+    # define groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # assign groups
+    Player.containers = (updatable, drawable)
+
+    # instantiate player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
 
-        # event loop
+        ## event loop ##
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-        # update game state
-        player.update(dt)
+        ## update game state ##
+        for obj in updatable:
+            obj.update(dt)
 
-        # draw and update game clock
+        ## update screen  ##
         screen.fill((0,0,0))
-        player.draw(screen)
+
+        for obj in drawable:
+            obj.draw(screen)
+
         pygame.display.flip()
+
+        ## update game clock ##
         dt = clock.tick(60) / 1000
 
 if __name__ == "__main__":
