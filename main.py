@@ -19,6 +19,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        # update game state
+        player.update(dt)
+
         # draw and update game clock
         screen.fill((0,0,0))
         player.draw(screen)
