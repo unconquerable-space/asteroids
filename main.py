@@ -23,7 +23,7 @@ def main():
     # assign groups #
     Player.containers = (updatable, drawable)
     Asteroid.containers = (updatable, drawable, asteroids)
-    Shot.containers = (updatable, drawable)
+    Shot.containers = (updatable, drawable, shots)
     AsteroidField.containers = (updatable)
 
     # instantiate player #
@@ -45,6 +45,10 @@ def main():
             obj.update(dt)
 
         for asteroid in asteroids:
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    asteroid.kill()
+                    shot.kill()
             if player.collides_with(asteroid):
                 print("Game over!")
                 return
